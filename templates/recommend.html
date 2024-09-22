@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Get Recommendations</h2>
+<form method="post">
+    <label for="numberOfInstances">Number of Instances:</label>
+    <input type="text" id="numberOfInstances" name="numberOfInstances" required><br><br>
+
+    <label for="instanceName">Instance Name:</label>
+    <select id="instanceName" name="instanceName" required>
+        <option value="t3.medium">t3.medium</option>
+        <option value="t3.xlarge">t3.xlarge</option>
+        <option value="c5.2xlarge">c5.2xlarge</option>
+        <option value="m5.2xlarge">m5.2xlarge</option>
+        <option value="r5.2xlarge">r5.2xlarge</option>
+        <option value="r5.4xlarge">r5.4xlarge</option>
+        <option value="c5.12xlarge">c5.12xlarge</option>
+    </select><br><br>
+    
+    <label for="numberOfVolume">Number of Volume:</label>
+    <input type="text" id="numberOfVolume" name="numberOfVolume" required><br><br>
+
+    <label for="storageSize">Storage Size:</label>
+    <input type="text" id="storageSize" name="storageSize" required><br><br>
+
+    <label for="ALB">ALB:</label>
+    <input type="text" id="ALB" name="ALB" required><br><br>
+
+    <label for="costPerMonth">Current Cost Per Month:</label>
+    <input type="number" step="0.01" id="costPerMonth" name="costPerMonth" required><br><br>
+
+    <input type="submit" value="Get Recommendations">
+</form>
+
+{% if recommendations %}
+    <h3>Recommendations:</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Number of Instances</th>
+                <th>Instance Name</th>
+                <th>Storage Size</th>
+                <th>Cost Per Month</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rec in recommendations %}
+            <tr>
+                <td>{{ rec['Number of Instances'] }}</td>
+                <td>{{ rec['Instance Name'] }}</td>
+                <td>{{ rec['Storage Size'] }}</td>
+                <td>${{ rec['Cost Per Month'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

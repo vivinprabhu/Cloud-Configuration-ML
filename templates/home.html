@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome to the Cloud Cost Application</h2>
+
+<section class="overview" id="overview">
+    <div class="content">
+        <h3>1. Project Overview</h3>
+        <p>This application helps users manage and forecast their cloud infrastructure costs. By analyzing current configurations and usage, users can make informed decisions to optimize their cloud expenses.</p>
+        <img src="{{ url_for('static', filename='images/overview.png') }}" alt="Project Overview">
+    </div>
+</section>
+
+<section class="overview" id="forecasting">
+    <div class="content">
+        <h3>2. Cost Forecasting</h3>
+        <img src="{{ url_for('static', filename='images/forecasting.png') }}" alt="Cost Forecasting" style="margin-top: 7rem;">
+        <p>Our forecasting feature predicts the cost of your cloud resources based on historical data and current usage. Enter your configuration details to get an estimate of future costs.</p>
+    </div>
+</section>
+
+<section class="overview" id="recommendations">
+    <div class="content">
+        <h3>3. Recommendations</h3>
+        <p>Get personalized recommendations to optimize your cloud costs. Compare your current setup with similar configurations to find more cost-effective options.</p>
+        <img src="{{ url_for('static', filename='images/recommendations.png') }}" alt="Recommendations">
+    </div>
+</section>
+
+<section class="overview" id="data-insights">
+    <div class="content">
+        <h3>4. Data Insights</h3>
+        <img src="{{ url_for('static', filename='images/data-insights.png') }}" alt="Data Insights" style="margin-top: 7rem;">
+        <p>Explore detailed insights into your cloud usage and spending patterns. Understand how different factors impact your costs and make data-driven decisions.</p>
+    </div>
+</section>
+
+<section class="overview" id="support">
+    <div class="content">
+        <h3>5. Support and Resources</h3>
+        <p>Access our support resources to get help with using the application and managing your cloud costs. Find documentation, FAQs, and contact information for further assistance.</p>
+        <img src="{{ url_for('static', filename='images/support.png') }}" alt="Support and Resources">
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Forecast Cost</h2>
+<form method="post">
+    <label for="instance_name">Instance Name:</label>
+    <select id="instance_name" name="instance_name" required>
+        <option value="t3.medium">t3.medium</option>
+        <option value="t3.xlarge">t3.xlarge</option>
+        <option value="c5.2xlarge">c5.2xlarge</option>
+        <option value="m5.2xlarge">m5.2xlarge</option>
+        <option value="r5.2xlarge">r5.2xlarge</option>
+        <option value="r5.4xlarge">r5.4xlarge</option>
+        <option value="c5.12xlarge">c5.12xlarge</option>
+    </select><br><br>
+
+    <label for="os">Operating System:</label>
+    <input type="text" id="os" name="os" required><br><br>
+
+    <label for="num_instances">Number of Instances:</label>
+    <input type="text" id="num_instances" name="num_instances" required><br><br>
+
+    <label for="number_of_volume">Number of Volume:</label>
+    <input type="text" id="number_of_volume" name="number_of_volume" required><br><br>
+
+    <label for="storage_size">Storage Size:</label>
+    <input type="text" id="storage_size" name="storage_size" required><br><br>
+
+    <label for="ALB">ALB:</label>
+    <input type="text" id="ALB" name="ALB" required><br><br>
+
+    <label for="vcpu">vCPU:</label>
+    <input type="text" id="vcpu" name="vcpu" required><br><br>
+
+    <label for="memory">Memory:</label>
+    <input type="text" id="memory" name="memory" required><br><br>
+
+    <input type="submit" value="Get Forecast">
+</form>
+
+{% if predicted_cost %}
+    <h3>Predicted Cost:</h3>
+    <p>${{ predicted_cost }}</p>
+{% elif error_message %}
+    <h3>Error:</h3>
+    <p>{{ error_message }}</p>
+{% endif %}
+{% endblock %}
