@@ -107,8 +107,3 @@ plt.ylim(y_test.min(), y_test.max())
 
 plt.tight_layout()
 plt.show()
-
-print("XGBoost R-squared: ", r2_xgboost)
-print("XGBoost Mean Squared Error: ", mse_xgboost)
-print("SVM R-squared: ", r2_svm)
-print("SVM Mean Squared Error: ", mse_svm)
