@@ -3,40 +3,57 @@
 {% block content %}
 <h2>Forecast Cost</h2>
 <form method="post">
-    <label for="instance_name">Instance Name:</label>
-    <select id="instance_name" name="instance_name" required>
-        <option value="t3.medium">t3.medium</option>
-        <option value="t3.xlarge">t3.xlarge</option>
-        <option value="c5.2xlarge">c5.2xlarge</option>
-        <option value="m5.2xlarge">m5.2xlarge</option>
-        <option value="r5.2xlarge">r5.2xlarge</option>
-        <option value="r5.4xlarge">r5.4xlarge</option>
-        <option value="c5.12xlarge">c5.12xlarge</option>
-    </select><br><br>
+    <div class="form-group">
+        <label for="instance_name">Instance Name:</label>
+        <select id="instance_name" name="instance_name" required onchange="updateResources()">
+            <option value="t3.medium">t3.medium</option>
+            <option value="t3.xlarge">t3.xlarge</option>
+            <option value="c5.2xlarge">c5.2xlarge</option>
+            <option value="m5.2xlarge">m5.2xlarge</option>
+            <option value="r5.2xlarge">r5.2xlarge</option>
+            <option value="r5.4xlarge">r5.4xlarge</option>
+            <option value="c5.12xlarge">c5.12xlarge</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="os">Operating System:</label>
+        <input type="text" id="os" name="os" value="Linux" required readonly>
+    </div>
 
-    <label for="os">Operating System:</label>
-    <input type="text" id="os" name="os" required><br><br>
+    <div class="form-group">
+        <label for="num_instances">Number of Instances:</label>
+        <input type="text" id="num_instances" name="num_instances" required>
+    </div>
 
-    <label for="num_instances">Number of Instances:</label>
-    <input type="text" id="num_instances" name="num_instances" required><br><br>
+    <div class="form-group">
+        <label for="number_of_volume">Number of Volume:</label>
+        <input type="text" id="number_of_volume" name="number_of_volume" required>
+    </div>
 
-    <label for="number_of_volume">Number of Volume:</label>
-    <input type="text" id="number_of_volume" name="number_of_volume" required><br><br>
+    <div class="form-group">
+        <label for="storage_size">Storage Size:</label>
+        <input type="text" id="storage_size" name="storage_size" required>
+    </div>
 
-    <label for="storage_size">Storage Size:</label>
-    <input type="text" id="storage_size" name="storage_size" required><br><br>
+    <div class="form-group">
+        <label for="ALB">ALB:</label>
+        <input type="text" id="ALB" name="ALB" required>
+    </div>
 
-    <label for="ALB">ALB:</label>
-    <input type="text" id="ALB" name="ALB" required><br><br>
+    <div class="form-group">
+        <label for="vcpu">vCPU:</label>
+        <input type="text" id="vcpu" name="vcpu" required readonly>
+    </div>
 
-    <label for="vcpu">vCPU:</label>
-    <input type="text" id="vcpu" name="vcpu" required><br><br>
-
-    <label for="memory">Memory:</label>
-    <input type="text" id="memory" name="memory" required><br><br>
+    <div class="form-group">
+        <label for="memory">Memory:</label>
+        <input type="text" id="memory" name="memory" required readonly>
+    </div>
 
     <input type="submit" value="Get Forecast">
 </form>
+
 
 {% if predicted_cost %}
     <h3>Predicted Cost:</h3>
@@ -45,4 +62,31 @@
     <h3>Error:</h3>
     <p>{{ error_message }}</p>
 {% endif %}
+
+<script>
+function updateResources() {
+    const instanceData = {
+        't3.medium': { vcpu: 2, memory: '4' },
+        't3.xlarge': { vcpu: 4, memory: '16' },
+        'c5.2xlarge': { vcpu: 8, memory: '16' },
+        'm5.2xlarge': { vcpu: 8, memory: '32' },
+        'r5.2xlarge': { vcpu: 8, memory: '64' },
+        'r5.4xlarge': { vcpu: 16, memory: '128' },
+        'c5.12xlarge': { vcpu: 48, memory: '96' },
+    };
+
+    const instanceName = document.getElementById('instance_name').value;
+    const vcpuInput = document.getElementById('vcpu');
+    const memoryInput = document.getElementById('memory');
+
+    if (instanceData[instanceName]) {
+        vcpuInput.value = instanceData[instanceName].vcpu;
+        memoryInput.value = instanceData[instanceName].memory;
+    } else {
+        vcpuInput.value = '';
+        memoryInput.value = '';
+    }
+}
+</script>
+
 {% endblock %}
