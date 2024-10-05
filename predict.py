@@ -89,14 +89,14 @@ def predict_from_input(user_input):
 
 def get_user_input():
     user_input = {}
-    user_input['instance_name'] = input("Enter instance name (e.g., 'r5.4xlarge'): ")
+    user_input['instance_name'] = input("Enter instance name (e.g., 'c5.2xlarge'): ")
     user_input['os'] = input("Enter os name (e.g., 'Linux'): ")
-    user_input['num_instances'] = int(input("Enter number of instances (e.g., 5): "))
-    user_input['number_of_volume'] = float(input("Enter number of Volume (e.g., 6): "))
-    user_input['storage_size'] = float(input("Enter storage size in GB (e.g., 698): "))
+    user_input['num_instances'] = int(input("Enter number of instances (e.g., 3): "))
+    user_input['number_of_volume'] = float(input("Enter number of Volume (e.g., 10): "))
+    user_input['storage_size'] = float(input("Enter storage size in GB (e.g., 567): "))
     user_input['ALB'] = float(input("Enter number of ApplicationLoadBalancer (e.g., 1): "))
-    user_input['vcpu'] = float(input("Enter number of vcpu (e.g., 8): "))
-    user_input['memory'] = float(input("Enter number of memory (e.g., 64 , 3749.73): "))
+    user_input['vcpu'] = float(input("Enter number of vcpu (e.g., 4): "))
+    user_input['memory'] = float(input("Enter number of memory (e.g., 16 , 1995.42): "))
     return user_input
 
 user_input = get_user_input()

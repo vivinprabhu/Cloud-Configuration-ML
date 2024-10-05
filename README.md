@@ -14,6 +14,7 @@ This project leverages machine learning techniques to predict costs and recommen
 - **Frontend:** HTML, CSS
 - **Data Processing:** pandas, scikit-learn
 - **Text Vectorization:** TfidfVectorizer
+- **Graphs:** matplotlib
 
 ## Installation
 
@@ -27,7 +28,7 @@ To get started with this project, follow these steps:
 
 2. **Download the dataset:**
 
-   Ensure that the dataset `cloud.csv` is present in the project directory. The dataset should have the following columns: `numberOfInstances`, `instanceName`, `storageSize` and others required for the model.
+   Ensure that the dataset `cloud.csv` is present in the project directory.
 
 ## Usage
 
@@ -45,6 +46,14 @@ To get started with this project, follow these steps:
    - **Recommendation Page:** Provides recommendations based on user inputs.
    - **Forecast Page:** Allows users to input features to forecast cost.
 
+3. **Run the model individually:**
+
+    ```bash
+    python predict.py
+    python recommendation.py
+    python visualize.py
+    ```
+
 ## Project Structure
 
 - `app.py`: The main Flask application file that includes routes and logic.
@@ -59,12 +68,15 @@ Ensure you have the following Python packages installed:
 - Flask
 - pandas
 - scikit-learn
+- scikit-optimize
 - xgboost
 - category_encoders
 - numpy
 - scipy
+- matplotlib
 
-You need to install dependencies some are mentioned (install all other necessaries):
+Run the following comment in your Powershell :
 
 ```bash
-pip install flask pandas scikit-learn xgboost category_encoders numpy scipy 
+pip install pandas scikit-learn xgboost scikit-optimize category-encoders flask matplotlib numpy
+pip install -r requirements.txt

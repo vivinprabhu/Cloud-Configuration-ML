@@ -19,7 +19,6 @@ selected_features = ['numberOfInstances','instanceName','numberOfVolume','storag
 print(selected_features)
 
 
-#fill the null values with ''
 for feature in selected_features:
   cloud_data[feature] = cloud_data[feature].fillna('')
 
@@ -59,7 +58,7 @@ print("Number of rows and columns after cosine_similarity:")
 print(similarity.shape)
 
 
-cur_num_instances = input('Enter the number of instances you are currently paying: ')
+cur_num_instances = input('Enter the number of instances : ')
 cur_instance_name = input('Enter your currect instance name: ')
 cur_num_vol = input('Enter number of storage volume: ')
 cur_storage_size = input('Enter your current storage size: ')
@@ -109,6 +108,5 @@ for instance in sorted_similar:
             print(f"{i}. Number of Instances: {num_instances}, Instance Name: {instance_name}, Number of Volume : {number_of_volume} ,Storage Size: {storage_size}, Number of ALB : {number_of_alb} ,Cost Per Month: {cost_per_month}")
             i += 1
 
-# If no recommendations are found
 if i == 1:
     print("Your current plan is already economically good.")

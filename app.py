@@ -35,7 +35,6 @@ cloud_data = cloud_data.rename(columns={
 
 cloud_data = cloud_data.drop(columns=['memory_usage', 'storage_type', 'cpu_usage'])
 
-# Prepare data for forecasting
 df = cloud_data
 X = df.drop(columns=['cost_per_month'])
 y = df['cost_per_month']
@@ -52,13 +51,11 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-# Define the model pipeline
 pipe = Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('clf', XGBRegressor(random_state=8))
 ])
 
-# Define the search space for Bayesian optimization
 search_space = {
     'clf__max_depth': Integer(3, 12),
     'clf__learning_rate': Real(0.001, 0.1, prior='log-uniform'),
@@ -74,14 +71,11 @@ search_space = {
     'clf__scale_pos_weight': Real(0.5, 1.0)
 }
 
-# Bayesian optimization
 opt = BayesSearchCV(pipe, search_space, cv=3, n_iter=10, scoring='neg_mean_squared_error', random_state=8)
 opt.fit(X_train, y_train)
 
-# Best estimator
 best_model = opt.best_estimator_
 
-# Prepare data for recommendations
 combined_features = (
     cloud_data['num_instances'].astype(str) + ' ' +
     cloud_data['instance_name'] + ' ' +
