@@ -135,6 +135,43 @@ print(f'SVM MSE: {mse_svm}')
 mse_rf = mean_squared_error(y_test, y_pred_rf)
 print(f'Random Forest MSE: {mse_rf}')
 
+# XGBoost prediction vs Actual
+
+plt.figure(figsize=(12, 8))
+plt.scatter(y_test, y_pred_xgboost, color='blue', label='XGBoost Predictions', alpha=0.6)
+plt.plot(y_test, y_test, color='black', linestyle='--', label='Actual Values')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('XGBoost: Actual vs Predicted')
+plt.legend()
+plt.grid()
+plt.tight_layout()
+plt.show()
+
+# SVM Predicted vs Actual
+plt.figure(figsize=(12, 8))
+plt.scatter(y_test, y_pred_svm, color='green', label='SVM Predictions', alpha=0.6)
+plt.plot(y_test, y_test, color='black', linestyle='--', label='Actual Values')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('SVM: Actual vs Predicted')
+plt.legend()
+plt.grid()
+plt.tight_layout()
+plt.show()
+
+# Random Forest Predicted vs Actual
+plt.figure(figsize=(12, 8))
+plt.scatter(y_test, y_pred_rf, color='orange', label='Random Forest Predictions', alpha=0.6)
+plt.plot(y_test, y_test, color='black', linestyle='--', label='Actual Values')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Random Forest: Actual vs Predicted')
+plt.legend()
+plt.grid()
+plt.tight_layout()
+plt.show()
+
 
 # Actual vs Predictions cost for all models
 
